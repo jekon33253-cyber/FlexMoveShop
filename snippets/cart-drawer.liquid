@@ -1,0 +1,263 @@
+{%- comment -%}
+  Cart Drawer Snippet
+  Slide-out cart with upsells, shipping bar, and trust badges
+{%- endcomment -%}
+
+<div class="overlay" id="cart-overlay"></div>
+
+<aside class="cart-drawer" id="cart-drawer" aria-label="Shopping Cart" data-free-shipping-threshold="{{ settings.free_shipping_threshold | default: 49 }}">
+  <div class="cart-drawer__header">
+    <h2 class="cart-drawer__title">Your Cart</h2>
+    <button class="cart-drawer__close" data-cart-close aria-label="Close cart">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <div class="cart-drawer__shipping-bar" id="cart-shipping-bar">
+    <div class="shipping-bar__track">
+      <div class="shipping-bar__progress" style="width: 0%"></div>
+    </div>
+    <p class="shipping-bar__message">Add <strong>${{ settings.free_shipping_threshold | default: 49 }}.00</strong> more for <strong>FREE shipping!</strong></p>
+  </div>
+
+  <div class="cart-drawer__items" id="cart-drawer-items">
+    <div class="cart-drawer__empty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <p>Your cart is empty</p>
+      <a href="/collections/all" class="btn btn--primary">Start Shopping</a>
+    </div>
+  </div>
+
+  <div class="cart-drawer__footer">
+    <div class="cart-drawer__trust">
+      <div class="cart-drawer__trust-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <span>30-Day Guarantee</span>
+      </div>
+      <div class="cart-drawer__trust-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        <span>Secure Checkout</span>
+      </div>
+    </div>
+
+    <div class="cart-drawer__subtotal-row">
+      <span class="cart-drawer__subtotal-label">Subtotal</span>
+      <span class="cart-drawer__subtotal-value" id="cart-drawer-subtotal">$0.00</span>
+    </div>
+
+    <p class="cart-drawer__tax-note">Shipping & taxes calculated at checkout</p>
+
+    <a href="/checkout" class="btn btn--primary btn--large btn--full cart-drawer__checkout-btn">
+      Checkout
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+
+    <a href="/cart" class="cart-drawer__view-cart">View Full Cart</a>
+  </div>
+</aside>
+
+<style>
+  .cart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 420px;
+    height: 100%;
+    background-color: var(--color-white);
+    z-index: var(--z-modal);
+    transform: translateX(100%);
+    transition: transform var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    box-shadow: -8px 0 24px var(--color-shadow-md);
+  }
+  .cart-drawer.is-open {
+    transform: translateX(0);
+  }
+  .cart-drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+  .cart-drawer__title {
+    font-size: var(--text-lg);
+    margin: 0;
+  }
+  .cart-drawer__close {
+    padding: var(--space-2);
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+  }
+  .cart-drawer__close:hover {
+    color: var(--color-text);
+  }
+  .cart-drawer__shipping-bar {
+    padding: var(--space-4) var(--space-6);
+    background-color: var(--color-bg-alt);
+  }
+  .shipping-bar__track {
+    width: 100%;
+    height: 4px;
+    background-color: var(--color-border);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-2);
+    overflow: hidden;
+  }
+  .shipping-bar__progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-navy), var(--color-emerald));
+    border-radius: var(--radius-full);
+    transition: width var(--transition-base);
+  }
+  .shipping-bar__message {
+    font-size: var(--text-xs);
+    text-align: center;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+  .cart-drawer__items {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-4) var(--space-6);
+  }
+  .cart-drawer__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-16) 0;
+    color: var(--color-text-muted);
+    gap: var(--space-4);
+  }
+  .cart-drawer__item {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--color-border-light);
+    position: relative;
+  }
+  .cart-drawer__item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: var(--color-bg-alt);
+  }
+  .cart-drawer__item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cart-drawer__item-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .cart-drawer__item-title {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    margin: 0 0 var(--space-1);
+    line-height: var(--leading-snug);
+  }
+  .cart-drawer__item-variant {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-2);
+  }
+  .cart-drawer__item-price {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 var(--space-2);
+  }
+  .cart-drawer__item-qty {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+  .cart-drawer__qty-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-lg);
+    color: var(--color-text);
+    transition: background-color var(--transition-fast);
+  }
+  .cart-drawer__qty-btn:hover {
+    background-color: var(--color-bg-alt);
+  }
+  .cart-drawer__qty-value {
+    width: 32px;
+    text-align: center;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+  }
+  .cart-drawer__item-remove {
+    position: absolute;
+    top: var(--space-4);
+    right: 0;
+    padding: var(--space-1);
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+  }
+  .cart-drawer__item-remove:hover {
+    color: var(--color-error);
+  }
+  .cart-drawer__footer {
+    padding: var(--space-5) var(--space-6);
+    border-top: 1px solid var(--color-border-light);
+    background-color: var(--color-bg-alt);
+  }
+  .cart-drawer__trust {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-5);
+    margin-bottom: var(--space-4);
+  }
+  .cart-drawer__trust-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+  }
+  .cart-drawer__trust-item svg {
+    color: var(--color-success);
+  }
+  .cart-drawer__subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-2);
+  }
+  .cart-drawer__subtotal-label {
+    font-weight: var(--font-weight-semibold);
+  }
+  .cart-drawer__subtotal-value {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+  }
+  .cart-drawer__tax-note {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+  .cart-drawer__view-cart {
+    display: block;
+    text-align: center;
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+</style>

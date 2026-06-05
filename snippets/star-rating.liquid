@@ -1,0 +1,40 @@
+{%- comment -%}
+  Star Rating Snippet
+  Usage: {% render 'star-rating', rating: 4.5, max: 5 %}
+{%- endcomment -%}
+
+{%- assign max_stars = max | default: 5 -%}
+{%- assign rating_value = rating | default: 0 | times: 1.0 -%}
+
+<div class="star-rating" role="img" aria-label="{{ rating_value }} out of {{ max_stars }} stars">
+  {%- for i in (1..max_stars) -%}
+    {%- assign star_value = i | times: 1.0 -%}
+    {%- assign half_star_value = star_value | minus: 0.5 -%}
+    {%- if rating_value >= star_value -%}
+      <svg class="star-rating__star star-rating__star--full" width="16" height="16" viewBox="0 0 24 24" fill="var(--color-star)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    {%- elsif rating_value >= half_star_value -%}
+      <svg class="star-rating__star star-rating__star--half" width="16" height="16" viewBox="0 0 24 24">
+        <defs>
+          <linearGradient id="half-star-{{ i }}">
+            <stop offset="50%" stop-color="var(--color-star)" />
+            <stop offset="50%" stop-color="#E5E5E5" />
+          </linearGradient>
+        </defs>
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="url(#half-star-{{ i }})"/>
+      </svg>
+    {%- else -%}
+      <svg class="star-rating__star star-rating__star--empty" width="16" height="16" viewBox="0 0 24 24" fill="#E5E5E5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+<style>
+  .star-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 1px;
+  }
+  .star-rating__star {
+    flex-shrink: 0;
+  }
+</style>

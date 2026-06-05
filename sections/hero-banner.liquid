@@ -1,0 +1,494 @@
+{%- comment -%} FlexMove Hero Banner — Premium animated hero with social proof {%- endcomment -%}
+
+<section class="hero" id="hero-banner">
+  <div class="hero__bg-decor" aria-hidden="true">
+    <div class="hero__bg-orb hero__bg-orb--1"></div>
+    <div class="hero__bg-orb hero__bg-orb--2"></div>
+    <div class="hero__bg-grid"></div>
+  </div>
+
+  <div class="container hero__container">
+    <div class="hero__content">
+      {%- if section.settings.overline != blank -%}
+        <div class="hero__badge animate-fade-in-up" style="--delay:0.1s">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          {{ section.settings.overline | default: '#1 Rated Knee Support' }}
+        </div>
+      {%- endif -%}
+
+      <h1 class="hero__title animate-fade-in-up" style="--delay:0.2s">
+        {{ section.settings.heading | default: 'Move Without Pain.<br>Live Without Limits.' }}
+      </h1>
+
+      {%- if section.settings.subheading != blank -%}
+        <p class="hero__subtitle animate-fade-in-up" style="--delay:0.3s">
+          {{ section.settings.subheading | default: 'The FlexMove KneeSystem™ delivers instant relief for knee pain, arthritis, and joint strain — clinically designed for everyday movement.' }}
+        </p>
+      {%- endif -%}
+
+      <div class="hero__actions animate-fade-in-up" style="--delay:0.4s">
+        <a href="{{ section.settings.button_url | default: '/products/flexmove-knee-system' }}" class="btn btn--primary btn--large hero__cta-main" id="hero-cta-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          {{ section.settings.button_text | default: 'Shop KneeSystem™ — $54' }}
+        </a>
+        {%- if section.settings.secondary_button_text != blank -%}
+          <a href="{{ section.settings.secondary_button_url | default: '#how-it-works' }}" class="btn btn--teal-outline btn--large" id="hero-cta-secondary">
+            {{ section.settings.secondary_button_text | default: 'See How It Works' }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Trust micro-signals under CTA {%- endcomment -%}
+      <div class="hero__trust animate-fade-in-up" style="--delay:0.5s">
+        <div class="hero__trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          30-Day Money-Back
+        </div>
+        <span class="hero__trust-sep">•</span>
+        <div class="hero__trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Free Shipping $49+
+        </div>
+        <span class="hero__trust-sep">•</span>
+        <div class="hero__trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          4.8★ (2,847 reviews)
+        </div>
+      </div>
+
+      {%- comment -%} Social proof avatars {%- endcomment -%}
+      <div class="hero__social-proof animate-fade-in-up" style="--delay:0.6s">
+        <div class="hero__avatars">
+          <div class="hero__avatar" style="background:#4A90D9;">JM</div>
+          <div class="hero__avatar" style="background:#E87040;">SR</div>
+          <div class="hero__avatar" style="background:#50C878;">KL</div>
+          <div class="hero__avatar" style="background:#9B59B6;">TP</div>
+          <div class="hero__avatar" style="background:#E74C3C;">BW</div>
+        </div>
+        <p class="hero__social-proof-text">
+          Join <strong>50,000+</strong> customers who moved pain-free with FlexMove
+        </p>
+      </div>
+    </div>
+
+    <div class="hero__visual animate-fade-in-up" style="--delay:0.15s">
+      {%- if section.settings.image -%}
+        <div class="hero__image-wrapper">
+          <img
+            src="{{ section.settings.image | image_url: width: 700 }}"
+            alt="{{ section.settings.image.alt | default: 'FlexMove KneeSystem - Advanced Orthopedic Support' }}"
+            width="700"
+            height="700"
+            loading="eager"
+            fetchpriority="high"
+            class="hero__product-image"
+          >
+        </div>
+      {%- else -%}
+        <div class="hero__image-placeholder">
+          {%- comment -%} Animated placeholder showing knee/joint SVG {%- endcomment -%}
+          <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" class="hero__placeholder-svg">
+            <!-- Leg silhouette -->
+            <path d="M100 40 C100 40 90 100 88 150 C86 200 90 240 95 280" stroke="rgba(79, 140, 255, 0.2)" stroke-width="40" fill="none" stroke-linecap="round"/>
+            <!-- Knee brace -->
+            <rect x="72" y="135" width="52" height="50" rx="12" fill="none" stroke="#4F8CFF" stroke-width="3"/>
+            <line x1="72" y1="155" x2="124" y2="155" stroke="#4F8CFF" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <line x1="72" y1="165" x2="124" y2="165" stroke="#4F8CFF" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <!-- Straps -->
+            <rect x="62" y="138" width="72" height="10" rx="5" fill="#4F8CFF" opacity="0.7"/>
+            <rect x="62" y="172" width="72" height="10" rx="5" fill="#4F8CFF" opacity="0.7"/>
+            <!-- FlexMove text on brace -->
+            <text x="98" y="161" text-anchor="middle" font-family="Sora, sans-serif" font-size="8" font-weight="700" fill="#4F8CFF">FlexMove</text>
+            <!-- Glow dots -->
+            <circle cx="98" cy="160" r="35" fill="rgba(79, 140, 255, 0.05)" class="hero-pulse"/>
+          </svg>
+          <div class="hero__placeholder-label">
+            <span>Product Image</span>
+            <small>Upload in Shopify admin</small>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Floating badges {%- endcomment -%}
+      <div class="hero__badge-float hero__badge-float--tl">
+        <div class="hero__float-icon">🏆</div>
+        <div>
+          <strong>#1 Rated</strong>
+          <span>Knee Support 2025</span>
+        </div>
+      </div>
+
+      <div class="hero__badge-float hero__badge-float--br">
+        <div class="hero__float-icon">⚡</div>
+        <div>
+          <strong>Instant Relief</strong>
+          <span>From first use</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: var(--gradient-hero);
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: var(--space-16) 0;
+  }
+
+  /* Background decorations */
+  .hero__bg-decor { position: absolute; inset: 0; pointer-events: none; }
+
+  .hero__bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+  }
+
+  .hero__bg-orb--1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(79, 140, 255, 0.08) 0%, transparent 70%);
+    top: -100px;
+    right: -100px;
+  }
+
+  .hero__bg-orb--2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(79, 140, 255, 0.04) 0%, transparent 70%);
+    bottom: -50px;
+    left: -50px;
+  }
+
+  .hero__bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79, 140, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79, 140, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Content */
+  .hero__content { max-width: 580px; }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(79, 140, 255, 0.08);
+    border: 1px solid rgba(79, 140, 255, 0.25);
+    color: var(--color-teal);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-5);
+    letter-spacing: 0.01em;
+  }
+
+  .hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--color-navy);
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-5);
+  }
+
+  .hero__subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-8);
+    max-width: 480px;
+  }
+
+  /* Actions */
+  .hero__actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-6);
+  }
+
+  .hero__cta-main {
+    font-size: var(--text-base);
+    padding: var(--space-4) var(--space-8);
+    min-height: 58px;
+  }
+
+  /* Trust row */
+  .hero__trust {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-8);
+  }
+
+  .hero__trust-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .hero__trust-item svg { color: var(--color-teal); }
+  .hero__trust-sep { color: var(--color-border); }
+
+  /* Social proof */
+  .hero__social-proof {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .hero__avatars {
+    display: flex;
+  }
+
+  .hero__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    margin-right: -8px;
+    flex-shrink: 0;
+  }
+
+  .hero__avatars .hero__avatar:last-child { margin-right: 0; }
+
+  .hero__social-proof-text {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .hero__social-proof-text strong { color: var(--color-teal); }
+
+  /* Visual column */
+  .hero__visual { position: relative; }
+
+  .hero__image-wrapper {
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(10, 37, 64, 0.08), 0 0 0 1px rgba(79, 140, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .hero__product-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .hero__image-placeholder {
+    aspect-ratio: 1;
+    background: rgba(79, 140, 255, 0.04);
+    border: 1px solid rgba(79, 140, 255, 0.15);
+    border-radius: var(--radius-2xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+
+  .hero__placeholder-svg {
+    width: 240px;
+    height: 240px;
+  }
+
+  .hero__placeholder-label {
+    text-align: center;
+    color: var(--color-text-muted);
+  }
+
+  .hero__placeholder-label span { display: block; font-size: var(--text-base); }
+  .hero__placeholder-label small { font-size: var(--text-xs); }
+
+  /* Floating badges */
+  .hero__badge-float {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    background: var(--color-white);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-3) var(--space-4);
+    animation: float-badge 3s ease-in-out infinite;
+    box-shadow: 0 8px 24px rgba(10, 37, 64, 0.08);
+    min-width: 160px;
+  }
+
+  .hero__badge-float--tl {
+    top: 20px;
+    left: -20px;
+    animation-delay: 0s;
+  }
+
+  .hero__badge-float--br {
+    bottom: 30px;
+    right: -20px;
+    animation-delay: 1.5s;
+  }
+
+  .hero__float-icon { font-size: 24px; }
+
+  .hero__badge-float strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-navy);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .hero__badge-float span {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  @keyframes float-badge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* Animation classes */
+  .animate-fade-in-up {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeInUp 0.7s ease forwards;
+    animation-delay: var(--delay, 0s);
+  }
+
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Hero pulse for SVG placeholder */
+  .hero-pulse {
+    animation: hero-pulse-anim 2s ease-in-out infinite;
+  }
+
+  @keyframes hero-pulse-anim {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero__container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero__visual {
+      order: -1;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .hero__content { max-width: 100%; }
+    .hero__subtitle { max-width: 100%; }
+
+    .hero__actions { justify-content: center; }
+    .hero__trust { justify-content: center; }
+    .hero__social-proof { justify-content: center; }
+
+    .hero__badge-float--tl { top: -10px; left: 0; }
+    .hero__badge-float--br { bottom: -10px; right: 0; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { min-height: auto; padding: var(--space-12) 0; }
+    .hero__actions { flex-direction: column; }
+    .hero__actions .btn { width: 100%; justify-content: center; }
+    .hero__badge-float { display: none; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "overline",
+      "label": "Badge Text",
+      "default": "#1 Rated Knee Support"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Move Without Pain. Live Without Limits."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "The FlexMove KneeSystem™ delivers instant relief for knee pain, arthritis, and joint strain — clinically designed for everyday movement."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Primary Button Text",
+      "default": "Shop KneeSystem™ — $54"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Primary Button URL"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_text",
+      "label": "Secondary Button Text",
+      "default": "See How It Works"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_url",
+      "label": "Secondary Button URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Product Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

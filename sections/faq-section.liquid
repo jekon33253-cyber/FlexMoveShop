@@ -1,0 +1,99 @@
+{%- comment -%} FAQ Section {%- endcomment -%}
+
+<section class="faq-section" id="faq-section">
+  <div class="container">
+    <div class="faq-section__header">
+      <span class="overline">{{ section.settings.overline | default: 'Got Questions?' }}</span>
+      <h2>{{ section.settings.heading | default: 'Frequently Asked Questions' }}</h2>
+    </div>
+
+    <div class="faq-list">
+      {%- for block in section.blocks -%}
+        <div class="faq-item" {{ block.shopify_attributes }}>
+          <button class="faq-item__trigger" aria-expanded="false" aria-controls="faq-answer-{{ block.id }}">
+            <span>{{ block.settings.question }}</span>
+            <svg class="faq-item__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-item__content" id="faq-answer-{{ block.id }}">
+            <p class="faq-item__answer">{{ block.settings.answer }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-item__trigger').forEach(function(trigger) {
+    trigger.addEventListener('click', function() {
+      var item = this.closest('.faq-item');
+      var isOpen = item.classList.contains('is-open');
+      var expanded = this.getAttribute('aria-expanded') === 'true';
+
+      // Close all
+      document.querySelectorAll('.faq-item.is-open').forEach(function(openItem) {
+        openItem.classList.remove('is-open');
+        openItem.querySelector('.faq-item__trigger').setAttribute('aria-expanded', 'false');
+      });
+
+      // Toggle current
+      if (!isOpen) {
+        item.classList.add('is-open');
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "overline",
+      "label": "Overline",
+      "default": "Got Questions?"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section",
+      "blocks": [
+        { "type": "faq_item", "settings": { "question": "What is your shipping policy?", "answer": "<p>We offer free standard shipping on all US orders over $49. Standard shipping takes 5-8 business days. Express shipping (2-3 days) is available for $12.99.</p>" }},
+        { "type": "faq_item", "settings": { "question": "What is your return policy?", "answer": "<p>We offer a 30-day money-back guarantee on all products. If you're not completely satisfied, contact us for a full refund. Products must be in original packaging.</p>" }},
+        { "type": "faq_item", "settings": { "question": "How do I choose the right product?", "answer": "<p>Each product page includes detailed sizing guides and usage recommendations. If you need help, our customer support team is available Mon-Fri 9AM-5PM EST.</p>" }},
+        { "type": "faq_item", "settings": { "question": "Are your products medical devices?", "answer": "<p>Our products are wellness and comfort products, not medical devices. They are designed to support comfort, posture, and mobility. For specific medical conditions, please consult your healthcare provider.</p>" }},
+        { "type": "faq_item", "settings": { "question": "Do you ship internationally?", "answer": "<p>Currently, we ship within the United States only. We're working on expanding to international markets. Sign up for our newsletter to be notified when we launch international shipping.</p>" }},
+        { "type": "faq_item", "settings": { "question": "How do I track my order?", "answer": "<p>Once your order ships, you'll receive a confirmation email with a tracking number. You can track your package through our shipping partner's website.</p>" }},
+        { "type": "faq_item", "settings": { "question": "Can I change or cancel my order?", "answer": "<p>Please contact us within 2 hours of placing your order if you need to make changes or cancel. Once an order has entered fulfillment, we may not be able to modify it.</p>" }},
+        { "type": "faq_item", "settings": { "question": "Do you offer wholesale pricing?", "answer": "<p>Yes, we offer wholesale pricing for qualified retailers and practitioners. Please contact us at wholesale@shopflexmove.com for more information.</p>" }}
+      ]
+    }
+  ]
+}
+{% endschema %}

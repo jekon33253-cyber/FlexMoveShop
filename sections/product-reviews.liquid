@@ -1,0 +1,70 @@
+{%- comment -%} Product Reviews Section (Judge.me compatible) {%- endcomment -%}
+
+<section class="section" id="product-reviews">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:var(--space-10);">
+      <span class="overline">Customer Reviews</span>
+      <h2>What Our Customers Say</h2>
+    </div>
+
+    {%- comment -%}
+      Judge.me widget placeholder.
+      When Judge.me is installed, it will render reviews here.
+      The div below is the standard Judge.me widget target.
+    {%- endcomment -%}
+    <div id="judgeme_product_reviews" data-id="{{ product.id }}">
+      {{ product.metafields.judgeme.widget }}
+    </div>
+
+    {%- comment -%} Fallback display when Judge.me is not installed {%- endcomment -%}
+    {%- unless product.metafields.judgeme.widget -%}
+      <div class="testimonials__grid" style="max-width:960px;margin:0 auto;">
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">{% render 'star-rating', rating: 5 %}</div>
+          <p class="testimonial-card__text">"Excellent product quality. The materials feel premium and the design actually works. I've noticed a real difference in my posture after just two weeks."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">M</div>
+            <div>
+              <p class="testimonial-card__name" style="margin:0;">Michael K.</p>
+              <p class="testimonial-card__verified" style="margin:0;">✓ Verified Buyer</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">{% render 'star-rating', rating: 5 %}</div>
+          <p class="testimonial-card__text">"I bought this for my husband who works from home. He says it's the best investment we've made for his home office. Great customer service too!"</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">L</div>
+            <div>
+              <p class="testimonial-card__name" style="margin:0;">Lisa P.</p>
+              <p class="testimonial-card__verified" style="margin:0;">✓ Verified Buyer</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">{% render 'star-rating', rating: 4 %}</div>
+          <p class="testimonial-card__text">"Very happy with this purchase. Arrived quickly and the quality exceeded my expectations. Would definitely recommend to anyone looking for comfort support."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">D</div>
+            <div>
+              <p class="testimonial-card__name" style="margin:0;">David S.</p>
+              <p class="testimonial-card__verified" style="margin:0;">✓ Verified Buyer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endunless -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Reviews",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Product Reviews"
+    }
+  ]
+}
+{% endschema %}

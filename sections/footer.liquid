@@ -1,0 +1,104 @@
+{%- comment -%} Footer Section {%- endcomment -%}
+
+<footer class="site-footer" id="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="site-footer__grid">
+      {%- comment -%} Brand Column {%- endcomment -%}
+      <div class="site-footer__brand">
+        <a href="/" class="site-header__logo" aria-label="FlexMove — Home" style="margin-bottom: var(--space-4); display: inline-block;">
+          <img
+            src="{{ 'logo.png' | asset_url }}"
+            alt="FlexMove — Advanced Joint Support"
+            width="180"
+            height="50"
+            style="display:block; max-height: 40px; width: auto;"
+            loading="lazy"
+          >
+        </a>
+        <p class="site-footer__brand-desc">{{ section.settings.brand_description | default: 'Premium back health, posture support, and mobility products designed to help you move better and live better. Science-informed. Quality-tested. Satisfaction guaranteed.' }}</p>
+        <div class="site-footer__social" style="display:flex;gap:var(--space-4);margin-top:var(--space-4);">
+          {%- if settings.social_instagram != blank -%}
+            <a href="{{ settings.social_instagram }}" target="_blank" rel="noopener" aria-label="Instagram" style="color:var(--color-text-secondary);transition:color 150ms;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          {%- endif -%}
+          {%- if settings.social_facebook != blank -%}
+            <a href="{{ settings.social_facebook }}" target="_blank" rel="noopener" aria-label="Facebook" style="color:var(--color-text-secondary);transition:color 150ms;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+          {%- endif -%}
+          {%- if settings.social_tiktok != blank -%}
+            <a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener" aria-label="TikTok" style="color:var(--color-text-secondary);transition:color 150ms;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 007.04 6.3 6.34 6.34 0 005.64-6.31V8.78a8.28 8.28 0 004.76 1.5V6.83a4.84 4.84 0 01-1-.14z"/></svg>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- comment -%} Shop Column {%- endcomment -%}
+      <div>
+        <h3 class="site-footer__heading">Shop</h3>
+        <ul class="site-footer__links">
+          <li><a href="/collections/all">All Products</a></li>
+          <li><a href="/collections/posture-support">Posture Support</a></li>
+          <li><a href="/collections/back-lumbar-care">Back & Lumbar Care</a></li>
+          <li><a href="/collections/ergonomic-comfort">Ergonomic Comfort</a></li>
+          <li><a href="/collections/recovery-mobility">Recovery & Mobility</a></li>
+          <li><a href="/collections/bundles">Bundles & Savings</a></li>
+        </ul>
+      </div>
+
+      {%- comment -%} Learn Column {%- endcomment -%}
+      <div>
+        <h3 class="site-footer__heading">Learn</h3>
+        <ul class="site-footer__links">
+          <li><a href="/blogs/wellness">Blog</a></li>
+          <li><a href="/pages/about">About Us</a></li>
+          <li><a href="/pages/how-it-works">How It Works</a></li>
+          <li><a href="/pages/reviews">Customer Reviews</a></li>
+          <li><a href="/pages/faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      {%- comment -%} Support Column {%- endcomment -%}
+      <div>
+        <h3 class="site-footer__heading">Support</h3>
+        <ul class="site-footer__links">
+          <li><a href="/pages/contact">Contact Us</a></li>
+          <li><a href="/pages/shipping">Shipping Info</a></li>
+          <li><a href="/pages/returns">Returns & Refunds</a></li>
+          <li><a href="/policies/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/policies/terms-of-service">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    {%- comment -%} Bottom Bar {%- endcomment -%}
+    <div class="site-footer__bottom">
+      <p class="site-footer__copyright">© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved. This website is not intended to provide medical advice.</p>
+
+      <div class="site-footer__payment-icons">
+        <div class="site-footer__payment-icon" title="Visa">VISA</div>
+        <div class="site-footer__payment-icon" title="Mastercard">MC</div>
+        <div class="site-footer__payment-icon" title="American Express">AMEX</div>
+        <div class="site-footer__payment-icon" title="PayPal">PP</div>
+        <div class="site-footer__payment-icon" title="Apple Pay">AP</div>
+        <div class="site-footer__payment-icon" title="Google Pay">GP</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "brand_description",
+      "label": "Brand Description",
+      "default": "Premium back health, posture support, and mobility products designed to help you move better and live better. Science-informed. Quality-tested. Satisfaction guaranteed."
+    }
+  ]
+}
+{% endschema %}

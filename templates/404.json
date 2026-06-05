@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Popular Products",
+        "subheading": "Check out our bestselling products while we find what you're looking for.",
+        "products_to_show": 4,
+        "show_view_all": true
+      }
+    }
+  },
+  "order": ["featured"]
+}

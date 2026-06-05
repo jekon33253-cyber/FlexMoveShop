@@ -1,0 +1,44 @@
+{
+  "general": {
+    "password_page": "Password page"
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to content",
+    "close": "Close"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "description": "Description",
+      "price": {
+        "regular_price": "Regular price",
+        "sale_price": "Sale price",
+        "from_price_html": "From {{ price }}"
+      }
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your Cart",
+      "empty": "Your cart is empty",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout",
+      "continue_shopping": "Continue Shopping",
+      "taxes_and_shipping": "Shipping & taxes calculated at checkout"
+    }
+  },
+  "collections": {
+    "general": {
+      "all_products": "All Products",
+      "no_matches": "No products match your search."
+    }
+  },
+  "newsletter": {
+    "label": "Email address",
+    "submit": "Subscribe",
+    "success": "Thank you for subscribing!"
+  }
+}

@@ -1,0 +1,57 @@
+{%- comment -%} Product Bundles / Frequently Bought Together {%- endcomment -%}
+
+<section class="section" id="product-bundles" style="background-color:var(--color-bg-alt);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:var(--space-10);">
+      <span class="overline">{{ section.settings.overline | default: 'Complete Your Setup' }}</span>
+      <h2>{{ section.settings.heading | default: 'Frequently Bought Together' }}</h2>
+    </div>
+
+    <div class="grid grid--3" style="max-width:960px;margin:0 auto;">
+      {%- for block in section.blocks -%}
+        {%- assign rec_product = all_products[block.settings.product] -%}
+        {%- if rec_product -%}
+          {% render 'product-card', product: rec_product %}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Bundles",
+  "settings": [
+    {
+      "type": "text",
+      "id": "overline",
+      "label": "Overline",
+      "default": "Complete Your Setup"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Bought Together"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Bundles"
+    }
+  ]
+}
+{% endschema %}

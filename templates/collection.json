@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "banner": {
+      "type": "hero-banner",
+      "settings": {
+        "overline": "collection.title",
+        "heading": "collection.title",
+        "subheading": "collection.description",
+        "button_text": "",
+        "secondary_button_text": ""
+      }
+    },
+    "collection-products": {
+      "type": "featured-collection",
+      "settings": {
+        "products_to_show": 12,
+        "show_view_all": false
+      }
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "settings": {}
+    }
+  },
+  "order": ["banner", "collection-products", "trust-bar"]
+}

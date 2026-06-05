@@ -1,0 +1,55 @@
+{%- comment -%}
+  Quantity Selector with Breaks
+  Usage: {% render 'quantity-selector', product: product %}
+{%- endcomment -%}
+
+<div class="quantity-breaks" id="quantity-breaks">
+  <p class="quantity-breaks__title">Choose your quantity:</p>
+  <div class="quantity-breaks__options">
+    <div class="quantity-break is-selected" data-quantity="1">
+      <div class="quantity-break__left">
+        <div class="quantity-break__radio"></div>
+        <span class="quantity-break__label">1 Pack</span>
+      </div>
+      <div class="quantity-break__right">
+        <span class="quantity-break__price" id="qb-price-1">{{ product.price | money }}</span>
+        <span class="quantity-break__per-unit">{{ product.price | money }} each</span>
+      </div>
+    </div>
+
+    <div class="quantity-break" data-quantity="2">
+      <div class="quantity-break__left">
+        <div class="quantity-break__radio"></div>
+        <span class="quantity-break__label">
+          2 Pack
+          <span class="badge badge--navy quantity-break__badge">Most Popular</span>
+        </span>
+      </div>
+      <div class="quantity-break__right">
+        {%- assign two_pack_price = product.price | times: 2 | times: 0.9 -%}
+        {%- assign two_pack_each = product.price | times: 0.9 -%}
+        <span class="quantity-break__price" id="qb-price-2">{{ two_pack_price | money }}</span>
+        <span class="quantity-break__per-unit">{{ two_pack_each | money }} each</span>
+        <span class="quantity-break__savings">Save 10%</span>
+      </div>
+    </div>
+
+    <div class="quantity-break" data-quantity="3">
+      <div class="quantity-break__left">
+        <div class="quantity-break__radio"></div>
+        <span class="quantity-break__label">
+          3 Pack
+          <span class="badge badge--emerald quantity-break__badge">Best Value</span>
+        </span>
+      </div>
+      <div class="quantity-break__right">
+        {%- assign three_pack_price = product.price | times: 3 | times: 0.85 -%}
+        {%- assign three_pack_each = product.price | times: 0.85 -%}
+        <span class="quantity-break__price" id="qb-price-3">{{ three_pack_price | money }}</span>
+        <span class="quantity-break__per-unit">{{ three_pack_each | money }} each</span>
+        <span class="quantity-break__savings">Save 15%</span>
+      </div>
+    </div>
+  </div>
+  <input type="hidden" name="quantity" id="product-quantity" value="1">
+</div>

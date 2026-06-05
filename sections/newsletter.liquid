@@ -1,0 +1,80 @@
+{%- comment -%} Newsletter Section {%- endcomment -%}
+
+<section class="newsletter" id="newsletter-section">
+  <div class="container">
+    <div class="newsletter__inner">
+      <span class="overline" style="color:rgba(255,255,255,0.7);">{{ section.settings.overline | default: 'Stay in the Loop' }}</span>
+      <h2 class="newsletter__title">{{ section.settings.heading | default: 'Join the FlexMove Community' }}</h2>
+      <p class="newsletter__subtitle">{{ section.settings.subheading | default: 'Get exclusive wellness tips, product updates, and 10% off your first order.' }}</p>
+
+      {%- form 'customer', id: 'newsletter-form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="newsletter__form">
+          <input
+            type="email"
+            name="contact[email]"
+            class="newsletter__input"
+            placeholder="{{ section.settings.placeholder | default: 'Enter your email address' }}"
+            required
+            aria-label="Email address"
+            id="newsletter-email"
+          >
+          <button type="submit" class="btn btn--white">
+            {{ section.settings.button_text | default: 'Subscribe' }}
+          </button>
+        </div>
+      {%- endform -%}
+
+      <p class="newsletter__privacy">{{ section.settings.privacy_text | default: 'No spam, ever. Unsubscribe anytime. We respect your privacy.' }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "overline",
+      "label": "Overline",
+      "default": "Stay in the Loop"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join the FlexMove Community"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Get exclusive wellness tips, product updates, and 10% off your first order."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input Placeholder",
+      "default": "Enter your email address"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "privacy_text",
+      "label": "Privacy Text",
+      "default": "No spam, ever. Unsubscribe anytime. We respect your privacy."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

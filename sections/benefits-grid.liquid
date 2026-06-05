@@ -1,0 +1,129 @@
+{%- comment -%} Benefits Grid Section {%- endcomment -%}
+
+<section class="benefits-grid section--alt" id="benefits-grid">
+  <div class="container">
+    <div class="benefits-grid__header">
+      <span class="overline">{{ section.settings.overline | default: 'Why Choose Us' }}</span>
+      <h2>{{ section.settings.heading | default: 'Science-Informed Wellness Products' }}</h2>
+      <p class="text-secondary text-lg" style="max-width:600px;margin:var(--space-3) auto 0;">{{ section.settings.subheading | default: 'Every product is designed with ergonomic principles and quality materials to support your body naturally.' }}</p>
+    </div>
+
+    <div class="benefits-grid__items">
+      {%- for block in section.blocks -%}
+        <div class="benefits-grid__item" {{ block.shopify_attributes }}>
+          <div class="benefits-grid__icon">
+            {%- case block.settings.icon -%}
+              {%- when 'spine' -%}
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><path d="M8 6h8"/><path d="M7 10h10"/><path d="M8 14h8"/><path d="M9 18h6"/></svg>
+              {%- when 'shield' -%}
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              {%- when 'heart' -%}
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              {%- when 'award' -%}
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              {%- when 'zap' -%}
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              {%- when 'target' -%}
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              {%- else -%}
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+            {%- endcase -%}
+          </div>
+          <h3 class="benefits-grid__item-title">{{ block.settings.title }}</h3>
+          <p class="benefits-grid__item-desc">{{ block.settings.description }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Benefits Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "overline",
+      "label": "Overline",
+      "default": "Why Choose Us"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Science-Informed Wellness Products"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Every product is designed with ergonomic principles and quality materials to support your body naturally."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "spine", "label": "Spine" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "award", "label": "Award" },
+            { "value": "zap", "label": "Energy" },
+            { "value": "target", "label": "Target" }
+          ],
+          "default": "spine"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Ergonomic Design"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Each product is engineered with biomechanical principles to support your body's natural alignment."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits Grid",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "spine",
+            "title": "Ergonomic Design",
+            "description": "Engineered with biomechanical principles to support your body's natural alignment and posture."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "award",
+            "title": "Premium Materials",
+            "description": "Medical-grade materials rigorously tested for durability, comfort, and long-lasting performance."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "heart",
+            "title": "Comfort-First Approach",
+            "description": "Designed for all-day comfort so you can focus on what matters most — living your best life."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

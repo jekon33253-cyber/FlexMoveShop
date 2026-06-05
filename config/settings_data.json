@@ -1,0 +1,152 @@
+{
+  "current": {
+    "color_primary_text": "#1A202C",
+    "color_white": "#FFFFFF",
+    "color_navy": "#0A2540",
+    "color_navy_dark": "#081D33",
+    "color_teal": "#4F8CFF",
+    "color_teal_dark": "#316EE0",
+    "color_light_gray": "#F8FAFC",
+    "color_border_gray": "#E2E8F0",
+    "color_accent": "#4F8CFF",
+    "color_accent_hover": "#316EE0",
+    "color_success": "#38A169",
+    "color_warning": "#D69E2E",
+    "color_error": "#E53E3E",
+    "font_heading": "sora_n7",
+    "font_body": "plus_jakarta_sans_n4",
+    "page_width": 1280,
+    "section_spacing": 80,
+    "show_announcement": true,
+    "announcement_text": "Free Shipping on Orders Over $49 | 30-Day Money-Back Guarantee | ⭐ 4.8/5 Rated",
+    "free_shipping_threshold": "49",
+    "brand_name": "FlexMove",
+    "brand_tagline": "Advanced Joint Support",
+    "ga4_measurement_id": "",
+    "gtm_container_id": "",
+    "meta_pixel_id": "",
+    "clarity_project_id": "",
+    "social_instagram": "",
+    "social_facebook": "",
+    "social_tiktok": "",
+    "social_pinterest": "",
+    "social_youtube": "",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "menu": "main-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    },
+    "content_for_index": [
+      {
+        "type": "hero-banner",
+        "settings": {
+          "overline": "#1 Rated Knee Support 2025",
+          "heading": "Move Without Pain. Live Without Limits.",
+          "subheading": "The FlexMove KneeSystem™ delivers instant relief for knee pain, arthritis, and joint strain — clinically designed for everyday movement.",
+          "button_text": "Shop KneeSystem™ — $54",
+          "secondary_button_text": "See How It Works",
+          "secondary_button_url": "#how-it-works"
+        }
+      },
+      {
+        "type": "trust-bar",
+        "settings": {}
+      },
+      {
+        "type": "benefits-grid",
+        "settings": {
+          "overline": "Why FlexMove",
+          "heading": "Advanced Joint Support Technology",
+          "subheading": "Every FlexMove product is engineered with orthopedic principles and premium materials to support your joints naturally and effectively."
+        },
+        "blocks": [
+          {
+            "type": "benefit",
+            "settings": {
+              "icon": "zap",
+              "title": "Instant Pain Relief",
+              "description": "Feel the difference from your very first wear. Advanced compression technology targets pain at the source for immediate comfort."
+            }
+          },
+          {
+            "type": "benefit",
+            "settings": {
+              "icon": "shield",
+              "title": "Medical-Grade Support",
+              "description": "Clinically designed orthopedic support with anatomical contouring that follows your knee's natural movement."
+            }
+          },
+          {
+            "type": "benefit",
+            "settings": {
+              "icon": "heart",
+              "title": "Comfort All Day",
+              "description": "Thin enough to wear under clothing, breathable enough for active days. Designed for your life, not just recovery."
+            }
+          },
+          {
+            "type": "benefit",
+            "settings": {
+              "icon": "award",
+              "title": "Doctor Recommended",
+              "description": "Trusted by orthopedic specialists and physical therapists for post-injury recovery, arthritis, and preventive joint care."
+            }
+          },
+          {
+            "type": "benefit",
+            "settings": {
+              "icon": "target",
+              "title": "Precision Fit",
+              "description": "Available in 5 sizes from S to XXL with separate left/right options, ensuring you get the exact support your knee needs."
+            }
+          },
+          {
+            "type": "benefit",
+            "settings": {
+              "icon": "spine",
+              "title": "Durable & Washable",
+              "description": "Premium materials that maintain their therapeutic properties wash after wash. Built to last as long as your recovery journey."
+            }
+          }
+        ]
+      },
+      {
+        "type": "how-it-works",
+        "settings": {
+          "overline": "Simple & Effective",
+          "heading": "How It Works",
+          "subheading": "Getting started with FlexMove is simple. Three easy steps to pain-free movement.",
+          "show_cta": true,
+          "cta_text": "Shop KneeSystem™ Now"
+        }
+      },
+      {
+        "type": "comparison-table",
+        "settings": {
+          "overline": "Why FlexMove Wins",
+          "heading": "See the Difference",
+          "subheading": "Not all knee supports are created equal. See why 50,000+ customers chose FlexMove over the alternatives."
+        }
+      },
+      {
+        "type": "testimonials",
+        "settings": {}
+      },
+      {
+        "type": "featured-collection",
+        "settings": {}
+      },
+      {
+        "type": "newsletter",
+        "settings": {}
+      }
+    ]
+  }
+}

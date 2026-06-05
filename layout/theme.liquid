@@ -1,0 +1,84 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0">
+
+  <title>
+    {%- if page_title -%}
+      {{ page_title }}
+      {%- if current_page != 1 %} — Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} — {{ shop.name }}{% endunless -%}
+    {%- else -%}
+      {{ shop.name }}
+    {%- endif -%}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  {% render 'seo-meta' %}
+  {% render 'structured-data' %}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {%- if settings.favicon != blank -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- endif -%}
+
+  {%- comment -%} Google Fonts — Inter + Plus Jakarta Sans {%- endcomment -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  {%- comment -%} Theme Stylesheets {%- endcomment -%}
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  {{ 'sections.css' | asset_url | stylesheet_tag }}
+
+  {%- if template.name == 'product' -%}
+    {{ 'product.css' | asset_url | stylesheet_tag }}
+  {%- endif -%}
+
+  {%- comment -%} Analytics Scripts (Head) {%- endcomment -%}
+  {% render 'analytics-scripts', position: 'head' %}
+
+  {{ content_for_header }}
+</head>
+
+<body class="template-{{ template.name }}{% if template.suffix %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
+  {%- comment -%} Analytics Scripts (Body Start) {%- endcomment -%}
+  {% render 'analytics-scripts', position: 'body_start' %}
+
+  <a href="#main-content" class="skip-to-content">{{ 'accessibility.skip_to_content' | t }}</a>
+
+
+
+  {%- comment -%} Header {%- endcomment -%}
+  {% section 'header' %}
+
+  {%- comment -%} Main Content {%- endcomment -%}
+  <main id="main-content" class="main-content" role="main">
+    {{ content_for_layout }}
+  </main>
+
+  {%- comment -%} Footer {%- endcomment -%}
+  {% section 'footer' %}
+
+  {%- comment -%} Cart Drawer {%- endcomment -%}
+  {% render 'cart-drawer' %}
+
+  {%- comment -%} Theme Scripts {%- endcomment -%}
+  <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+
+  {%- if template.name == 'product' -%}
+    <script src="{{ 'product.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
+
+  <script src="{{ 'analytics.js' | asset_url }}" defer="defer"></script>
+
+  {%- comment -%} Analytics Scripts (Body End) {%- endcomment -%}
+  {% render 'analytics-scripts', position: 'body_end' %}
+</body>
+</html>

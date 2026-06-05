@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "cart-content": {
+      "type": "featured-collection",
+      "settings": {
+        "overline": "You May Also Like",
+        "heading": "Complete Your Order",
+        "products_to_show": 4,
+        "show_view_all": false
+      }
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "settings": {}
+    }
+  },
+  "order": ["cart-content", "trust-bar"]
+}

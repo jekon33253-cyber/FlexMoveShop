@@ -1,0 +1,242 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "SHOPFLEXMOVE",
+    "theme_version": "1.0.0",
+    "theme_author": "SHOPFLEXMOVE",
+    "theme_documentation_url": "https://flexmoveshop.myshopify.com/pages/about",
+    "theme_support_url": "https://flexmoveshop.myshopify.com/pages/contact"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Brand Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_primary_text",
+        "label": "Primary Text",
+        "default": "#1A1A1A"
+      },
+      {
+        "type": "color",
+        "id": "color_white",
+        "label": "White",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_premium_navy",
+        "label": "Premium Navy",
+        "default": "#003366"
+      },
+      {
+        "type": "color",
+        "id": "color_premium_emerald",
+        "label": "Premium Emerald",
+        "default": "#0F4C43"
+      },
+      {
+        "type": "color",
+        "id": "color_light_gray",
+        "label": "Light Gray Background",
+        "default": "#F5F5F5"
+      },
+      {
+        "type": "color",
+        "id": "color_border_gray",
+        "label": "Border Gray",
+        "default": "#E5E5E5"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent Color",
+        "default": "#003366",
+        "info": "Used for buttons, links, and interactive elements"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_hover",
+        "label": "Accent Hover",
+        "default": "#002244"
+      },
+      {
+        "type": "color",
+        "id": "color_success",
+        "label": "Success Color",
+        "default": "#0F4C43"
+      },
+      {
+        "type": "color",
+        "id": "color_warning",
+        "label": "Warning Color",
+        "default": "#D4A843"
+      },
+      {
+        "type": "color",
+        "id": "color_error",
+        "label": "Error Color",
+        "default": "#C0392B"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Heading Font"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading Font",
+        "default": "plus_jakarta_sans_n7"
+      },
+      {
+        "type": "header",
+        "content": "Body Font"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body Font",
+        "default": "inter_n4"
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "label": "Page Width",
+        "min": 1000,
+        "max": 1600,
+        "step": 20,
+        "default": 1280,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "section_spacing",
+        "label": "Section Spacing",
+        "min": 20,
+        "max": 120,
+        "step": 4,
+        "default": 80,
+        "unit": "px"
+      }
+    ]
+  },
+  {
+    "name": "Trust & Credibility",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Announcement Bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_announcement",
+        "label": "Show Announcement Bar",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Announcement Text",
+        "default": "Free Shipping on Orders Over $49 | 30-Day Money-Back Guarantee"
+      },
+      {
+        "type": "header",
+        "content": "Free Shipping"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_threshold",
+        "label": "Free Shipping Threshold ($)",
+        "default": "49"
+      }
+    ]
+  },
+  {
+    "name": "Analytics",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Google Analytics 4"
+      },
+      {
+        "type": "text",
+        "id": "ga4_measurement_id",
+        "label": "GA4 Measurement ID",
+        "info": "e.g., G-XXXXXXXXXX"
+      },
+      {
+        "type": "header",
+        "content": "Google Tag Manager"
+      },
+      {
+        "type": "text",
+        "id": "gtm_container_id",
+        "label": "GTM Container ID",
+        "info": "e.g., GTM-XXXXXXX"
+      },
+      {
+        "type": "header",
+        "content": "Meta Pixel"
+      },
+      {
+        "type": "text",
+        "id": "meta_pixel_id",
+        "label": "Meta Pixel ID",
+        "info": "e.g., 1234567890"
+      },
+      {
+        "type": "header",
+        "content": "Microsoft Clarity"
+      },
+      {
+        "type": "text",
+        "id": "clarity_project_id",
+        "label": "Clarity Project ID",
+        "info": "e.g., abcdefghij"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok URL"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest",
+        "label": "Pinterest URL"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube",
+        "label": "YouTube URL"
+      }
+    ]
+  }
+]

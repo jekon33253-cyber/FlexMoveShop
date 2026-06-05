@@ -1,0 +1,20 @@
+{%- comment -%} Main Page Section {%- endcomment -%}
+
+<div class="container main-page-section" style="padding: var(--space-8) 0;">
+  <h1 class="page-title text-center" style="margin-bottom: var(--space-6);">{{ page.title }}</h1>
+  <div class="page-content rte">
+    {{ page.content }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Page",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Main Page"
+    }
+  ]
+}
+{% endschema %}

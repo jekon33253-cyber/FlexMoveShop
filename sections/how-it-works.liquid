@@ -1,0 +1,329 @@
+{%- comment -%} FlexMove — How It Works (Premium 3-step visual guide) {%- endcomment -%}
+
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="how-it-works__header">
+      <span class="overline">{{ section.settings.overline | default: 'Simple & Effective' }}</span>
+      <h2>{{ section.settings.heading | default: 'How It Works' }}</h2>
+      <p class="text-secondary text-lg" style="max-width:620px;margin:var(--space-4) auto 0;">
+        {{ section.settings.subheading | default: "Getting started with FlexMove is simple. Three easy steps to pain-free movement." }}
+      </p>
+    </div>
+
+    <div class="how-it-works__steps">
+      {%- for block in section.blocks -%}
+        <div class="how-it-works__step {% if forloop.first %}how-it-works__step--active{% endif %}" {{ block.shopify_attributes }}>
+          <div class="how-it-works__step-number">
+            <span>{{ forloop.index }}</span>
+          </div>
+          {%- if forloop.index < section.blocks.size -%}
+            <div class="how-it-works__step-connector" aria-hidden="true"></div>
+          {%- endif -%}
+          <div class="how-it-works__step-icon">
+            {%- case block.settings.icon -%}
+              {%- when 'put-on' -%}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M12 2a5 5 0 015 5v2H7V7a5 5 0 015-5z"/>
+                  <path d="M7 9H5l-2 4v9h18v-9l-2-4h-2"/>
+                  <path d="M9 21v-6h6v6"/>
+                </svg>
+              {%- when 'adjust' -%}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+                </svg>
+              {%- when 'move' -%}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+              {%- else -%}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+            {%- endcase -%}
+          </div>
+          <h3 class="how-it-works__step-title">{{ block.settings.title }}</h3>
+          <p class="how-it-works__step-desc">{{ block.settings.description }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.show_cta -%}
+      <div class="how-it-works__cta">
+        <a href="{{ section.settings.cta_url | default: '/products/flexmove-knee-system' }}" class="btn btn--primary btn--large">
+          {{ section.settings.cta_text | default: 'Shop KneeSystem™ Now' }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <p class="how-it-works__cta-note">✅ Free shipping • 30-day money-back guarantee</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .how-it-works {
+    padding: var(--section-spacing) 0;
+    background: var(--color-bg);
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Subtle background decoration */
+  .how-it-works::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(79, 140, 255, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .how-it-works::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(79, 140, 255, 0.02) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .how-it-works .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .how-it-works__header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+  }
+
+  .how-it-works__header h2 {
+    color: var(--color-navy);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+  }
+
+  .how-it-works__header .text-secondary {
+    color: var(--color-text-secondary);
+  }
+
+  .how-it-works__steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+    position: relative;
+    align-items: start;
+  }
+
+  .how-it-works__step {
+    text-align: center;
+    padding: var(--space-8) var(--space-6);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    position: relative;
+    transition: all var(--transition-base);
+  }
+
+  .how-it-works__step:hover,
+  .how-it-works__step--active {
+    background: var(--color-white);
+    border-color: var(--color-teal);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(79, 140, 255, 0.08);
+  }
+
+  .how-it-works__step-number {
+    width: 36px;
+    height: 36px;
+    background: var(--color-navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-5);
+    position: relative;
+  }
+
+  .how-it-works__step-number span {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    color: var(--color-white);
+    line-height: 1;
+  }
+
+  .how-it-works__step-icon {
+    width: 72px;
+    height: 72px;
+    background: rgba(79, 140, 255, 0.08);
+    border: 1.5px solid rgba(79, 140, 255, 0.2);
+    border-radius: var(--radius-2xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-5);
+    color: var(--color-teal);
+    transition: all var(--transition-base);
+  }
+
+  .how-it-works__step:hover .how-it-works__step-icon {
+    background: rgba(79, 140, 255, 0.15);
+    border-color: rgba(79, 140, 255, 0.35);
+    transform: scale(1.05);
+  }
+
+  .how-it-works__step-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: var(--space-3);
+  }
+
+  .how-it-works__step-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* CTA */
+  .how-it-works__cta {
+    text-align: center;
+    margin-top: var(--space-16);
+  }
+
+  .how-it-works__cta .btn--primary {
+    font-size: var(--text-base);
+    padding: var(--space-5) var(--space-12);
+    min-height: 60px;
+  }
+
+  .how-it-works__cta-note {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .how-it-works__steps {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    .how-it-works__step {
+      padding: var(--space-6) var(--space-5);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "overline",
+      "label": "Overline",
+      "default": "Simple & Effective"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "How It Works"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Getting started with FlexMove is simple. Three easy steps to pain-free movement."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show CTA Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Shop KneeSystem™ Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "put-on", "label": "Put On" },
+            { "value": "adjust", "label": "Adjust" },
+            { "value": "move", "label": "Move" },
+            { "value": "check", "label": "Checkmark" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Step Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "icon": "put-on",
+            "title": "Put It On",
+            "description": "Slip on the FlexMove KneeSystem™ in under 30 seconds. Adjustable straps ensure a snug, comfortable fit for any knee size."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "icon": "adjust",
+            "title": "Adjust the Fit",
+            "description": "Fine-tune the compression level with easy-dial straps. The anatomical design wraps naturally around your knee joint for targeted relief."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "icon": "move",
+            "title": "Move Pain-Free",
+            "description": "Feel the difference from your very first steps. Walk, climb stairs, and stay active — with the support your knees deserve."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

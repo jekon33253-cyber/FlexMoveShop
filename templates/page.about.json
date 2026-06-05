@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "heading": "Trusted by Thousands"
+      },
+      "blocks": {
+        "r1": { "type": "testimonial", "settings": { "rating": 5, "text": "SHOPFLEXMOVE has genuinely improved my daily comfort. The products are well-designed and feel premium.", "name": "Mark T." }},
+        "r2": { "type": "testimonial", "settings": { "rating": 5, "text": "I appreciate the educational approach. The product guides helped me understand how to get the most out of each product.", "name": "Anna K." }},
+        "r3": { "type": "testimonial", "settings": { "rating": 5, "text": "Fast shipping, great quality, and excellent customer service. This is how online shopping should be.", "name": "Chris L." }}
+      },
+      "block_order": ["r1", "r2", "r3"]
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {}
+    }
+  },
+  "order": ["testimonials", "newsletter"]
+}
