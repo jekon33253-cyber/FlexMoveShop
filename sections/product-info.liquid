@@ -1,135 +1,524 @@
 {%- comment -%} Product Info Section {%- endcomment -%}
 
-<div class="product-info" id="product-info">
-  {%- comment -%} Category / Overline {%- endcomment -%}
-  <span class="overline product-info__overline">{{ product.type | default: 'SHOPFLEXMOVE' }}</span>
+{%- if product.handle == 'flexmove-knee-system' -%}
+  {%- comment -%} Custom Competitor-Style Layout for KneeSystem {%- endcomment -%}
+  <div class="product-info product-info--knee" id="product-info">
+    <div class="product-info__rating" style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+      {% render 'star-rating', rating: 4.82 %}
+      <span class="product-info__rating-count" style="font-size: 13px; color: #4F8CFF; font-weight: 700;">4.82 | 16,927+ reviews</span>
+    </div>
 
-  {%- comment -%} Title {%- endcomment -%}
-  <h1 class="product-info__title">{{ product.title }}</h1>
+    <h1 class="product-info__title" style="font-size: 32px; font-weight: 800; color: #0A2540; line-height: 1.2; margin: 0 0 4px 0;">{{ product.title }}</h1>
+    <h2 class="product-info__subtitle" style="font-size: 18px; color: #4F8CFF; font-weight: 700; margin: 0 0 16px 0; text-transform: uppercase; letter-spacing: 0.5px;">Most Advanced Knee Brace</h2>
 
-  {%- comment -%} Rating {%- endcomment -%}
-  <div class="product-info__rating">
-    {% render 'star-rating', rating: 4.8 %}
-    <span class="product-info__rating-count">(128 reviews)</span>
-  </div>
+    <div class="product-stock-warning" style="color: #d32f2f; font-size: 13px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 6px;">
+      <span style="width: 8px; height: 8px; background-color: #d32f2f; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite;"></span>
+      <span>Low stock, June has huge risk of selling out</span>
+    </div>
 
-  {%- comment -%} Price {%- endcomment -%}
-  <div class="product-info__price-row">
-    <span class="price" id="product-price">{{ product.selected_or_first_available_variant.price | money }}</span>
-    {%- if product.compare_at_price_max > product.price -%}
-      <span class="price price--compare" id="product-compare-price">{{ product.compare_at_price_max | money }}</span>
-      {%- assign savings = product.compare_at_price_max | minus: product.price -%}
-      <span class="price--savings">Save {{ savings | money }}</span>
-    {%- else -%}
-      <span class="price price--compare" id="product-compare-price" style="display:none;"></span>
-    {%- endif -%}
-  </div>
-
-  {%- comment -%} Description {%- endcomment -%}
-  <p class="product-info__description">{{ product.description | strip_html | truncatewords: 40 }}</p>
-
-  {%- assign has_sizing = false -%}
-  {%- if product.handle == 'flexmove-pro-posture-corrector' or product.handle == 'flexmove-complete-posture-bundle' or product.handle == 'flexmove-knee-system' -%}
+    {%- comment -%} Custom Sizing guide trigger flag {%- endcomment -%}
     {%- assign has_sizing = true -%}
-  {%- endif -%}
 
-  {%- comment -%} Variant Selector {%- endcomment -%}
-  {%- unless product.has_only_default_variant -%}
-    {%- for option in product.options_with_values -%}
-      <div class="variant-selector">
-        <div class="variant-selector__header">
-          <label class="variant-selector__label">{{ option.name }}:</label>
-          {%- if has_sizing and option.name == 'Size' -%}
-            <button type="button" class="size-guide-link" data-size-modal-trigger>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
-              Size Guide
-            </button>
-          {%- endif -%}
+    {%- comment -%} Custom Unified Selector Cards {%- endcomment -%}
+    <div class="knee-buy-cards" style="margin-bottom: 20px;">
+      
+      <!-- Card 1: 1x Support -->
+      <div class="knee-buy-card is-selected" data-pack="1">
+        <div class="knee-buy-card__header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="radio" name="knee-pack-select" value="1" checked>
+            <span class="knee-card-title">1 x KneeSystems® (One leg)</span>
+          </div>
+          <span class="knee-card-price">$54.00</span>
         </div>
-        <div class="variant-selector__options">
-          {%- for value in option.values -%}
-            <button
-              class="variant-selector__option{% if forloop.first %} is-selected{% endif %}"
-              data-variant-option
-              data-option-index="{{ forloop.parentloop.index0 }}"
-              data-value="{{ value }}"
-            >
-              {{ value }}
-            </button>
-          {%- endfor -%}
+        
+        <!-- Selectors inside Card 1 -->
+        <div class="knee-buy-card__selectors">
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <label class="knee-field-label">Size</label>
+              <button type="button" class="size-guide-link" data-size-modal-trigger>Size Guide</button>
+            </div>
+            <select class="knee-select-size">
+              <option value="M (45-59 kg)">M (45 - 59 kg)</option>
+              <option value="L (60-75 kg)">L (60 - 75 kg)</option>
+              <option value="XL (76-90 kg)">XL (76 - 90 kg)</option>
+              <option value="XXL (90+ kg)">XXL (90+ kg)</option>
+            </select>
+          </div>
+          <div style="flex: 1;">
+            <label class="knee-field-label" style="margin-bottom: 4px;">Leg</label>
+            <select class="knee-select-leg">
+              <option value="Left Leg">Left Leg</option>
+              <option value="Right Leg">Right Leg</option>
+            </select>
+          </div>
         </div>
       </div>
-    {%- endfor -%}
-  {%- endunless -%}
 
-  {%- comment -%} Quantity Breaks {%- endcomment -%}
-  {% render 'quantity-selector', product: product %}
+      <!-- Card 2: 2x Support (Pair) -->
+      <div class="knee-buy-card" data-pack="2">
+        <div class="knee-buy-card__badge">Most Popular</div>
+        
+        <div class="knee-buy-card__header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="radio" name="knee-pack-select" value="2">
+            <span class="knee-card-title">2 x KneeSystems® (Both legs)</span>
+          </div>
+          <div style="text-align: right;">
+            <span class="knee-card-price" style="color: #2e7d32;">$97.20</span>
+            <span class="knee-card-savings">Save 10%</span>
+          </div>
+        </div>
+        
+        <!-- Selectors inside Card 2 (Size only, since it is for both legs) -->
+        <div class="knee-buy-card__selectors" style="display: none;">
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <label class="knee-field-label">Size</label>
+              <button type="button" class="size-guide-link" data-size-modal-trigger>Size Guide</button>
+            </div>
+            <select class="knee-select-size-pair">
+              <option value="M (45-59 kg)">M (45 - 59 kg)</option>
+              <option value="L (60-75 kg)">L (60 - 75 kg)</option>
+              <option value="XL (76-90 kg)">XL (76 - 90 kg)</option>
+              <option value="XXL (90+ kg)">XXL (90+ kg)</option>
+            </select>
+          </div>
+          <div style="flex: 1; display: flex; align-items: center; padding-left: 10px; padding-top: 15px;">
+            <span style="font-size: 12px; color: #666; font-weight: 500; line-height: 1.3;">Includes 1x Left + 1x Right leg support.</span>
+          </div>
+        </div>
+      </div>
 
-  {%- if product.handle == 'flexmove-knee-system' -%}
-    <div class="product-promo-gift" style="margin-top: var(--space-4); margin-bottom: var(--space-6); padding: var(--space-4); background-color: #FFFDEB; border: 1px dashed #E2D022; border-radius: var(--radius-md); display: flex; align-items: center; gap: var(--space-3);">
+    </div>
+
+    <!-- Free Gift promo banner -->
+    <div class="product-promo-gift">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" style="flex-shrink:0;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
       <div>
-        <p style="margin: 0; font-size: 13px; font-weight: 700; color: #8F7600; text-transform: uppercase; letter-spacing: 0.5px;">Exclusive June Offer</p>
-        <p style="margin: 2px 0 0 0; font-size: 13px; color: #4A5568; line-height: 1.4;"><strong>FREE GIFT:</strong> Self-Heating Therapeutic Joint Decompression Sleeve included with every order today!</p>
+        <p style="margin: 0; font-size: 12px; font-weight: 800; color: #8F7600; text-transform: uppercase; letter-spacing: 0.5px;">Exclusive June Offer</p>
+        <p style="margin: 2px 0 0 0; font-size: 12px; color: #4A5568; line-height: 1.4;"><strong>FREE GIFT:</strong> Self-Heating Therapeutic Joint Decompression Sleeve included with every order today!</p>
       </div>
     </div>
-  {%- endif -%}
 
-  {%- comment -%} Add to Cart {%- endcomment -%}
-  <div class="product-atc">
-    <form data-add-to-cart>
-      <input type="hidden" name="id" id="product-variant-id" value="{{ product.selected_or_first_available_variant.id }}">
-      <input type="hidden" name="quantity" value="1" id="product-quantity-input">
-      <button type="submit" class="btn btn--primary btn--large btn--full product-atc__button" id="product-atc-btn" {% unless product.available %}disabled{% endunless %}>
-        {%- if product.available -%}
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-          Add to Cart
-        {%- else -%}
-          Sold Out
-        {%- endif -%}
-      </button>
-    </form>
-    <div class="product-compliance-disclaimer">
-      <p>This product is a wellness/comfort product and is not a medical device. It is not intended to diagnose, treat, cure, or prevent any disease or medical condition. Consult your healthcare provider for specific medical concerns.</p>
+    <!-- ATC Button & Checkout Form -->
+    <div class="product-atc" style="margin-bottom: 15px;">
+      <form id="knee-custom-atc-form">
+        <button type="submit" class="btn btn--primary btn--large btn--full product-atc__button" id="knee-atc-btn" style="background-color: #0A2540; color: #fff; font-size: 18px; font-weight: 700; padding: 15px; border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s ease; border: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          Proceed To Checkout
+        </button>
+      </form>
+    </div>
+
+    <!-- Payment Badges & Delivery Info -->
+    <div class="product-trust-badges" style="text-align: center; margin-bottom: 25px; padding: 15px; background-color: #f8fafc; border-radius: var(--radius-md);">
+      <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;">
+        <span class="trust-badge-pill">Apple Pay</span>
+        <span class="trust-badge-pill">Google Pay</span>
+        <span class="trust-badge-pill">PayPal</span>
+        <span class="trust-badge-pill">Visa</span>
+        <span class="trust-badge-pill">Mastercard</span>
+        <span class="trust-badge-pill">Shop Pay</span>
+      </div>
+      <p style="font-size: 12px; color: #2e7d32; font-weight: 700; margin: 0; display: flex; align-items: center; justify-content: center; gap: 4px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="vertical-align: middle;"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Order Today for Delivery by <span id="delivery-date-range" style="text-decoration: underline;">...</span>
+      </p>
+    </div>
+
+    <!-- Sizing Tip Box -->
+    <div class="knee-sizing-tip-box" style="padding: 12px 15px; background-color: #f0f7ff; border-left: 4px solid #4F8CFF; border-radius: 4px; font-size: 13px; color: #1e293b; margin-bottom: 25px; line-height: 1.4;">
+      <strong>Measurement Tip:</strong> If your thigh circumference falls on the boundary between two sizes, choose the larger size for maximum comfort under active compression.
+    </div>
+
+    <!-- Description Details -->
+    <div class="product-description-accordion" style="border-top: 1px solid #e2e8f0; padding-top: 20px; font-size: 14px; color: #4A5568; line-height: 1.6;">
+      <p>The <strong>FlexMove KneeSystem®</strong> is an advanced, clinically designed orthopedic knee brace engineered to relieve joint stiffness, support injury recovery, and reduce knee pain. Equipped with dual side steel stabilizers for robust lateral support, an integrated patella gel pad to shield the kneecap, and anti-slip silicone lining to keep the sleeve in place, it offers ultimate mobility and confidence.</p>
+      
+      <h3 style="color: #0A2540; font-size: 16px; font-weight: 700; margin-top: 20px; margin-bottom: 10px;">Key Benefits</h3>
+      <ul style="margin: 0; padding-left: 20px;">
+        <li><strong>Instant Pain Relief:</strong> Medical-grade compression decompresses the joint and reduces swelling immediately.</li>
+        <li><strong>Lateral Stabilization:</strong> Dual side steel stabilizers absorb impact and support ligaments.</li>
+        <li><strong>Patella Protection:</strong> An integrated circular gel pad cushions the kneecap, redistributing pressure.</li>
+        <li><strong>Micro-Adjustable Tension Dial:</strong> Customize compression with a simple twist.</li>
+      </ul>
     </div>
   </div>
 
-  {%- comment -%} Trust Badges {%- endcomment -%}
-  <div class="product-trust">
-    <div class="product-trust__item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-      <span>30-Day Money-Back Guarantee</span>
-    </div>
-    <div class="product-trust__item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-      <span>Secure Checkout</span>
-    </div>
-    <div class="product-trust__item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-      <span>Free US Shipping Over $49</span>
-    </div>
-    <div class="product-trust__item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg>
-      <span>Responsive Customer Support</span>
-    </div>
-  </div>
+  {%- comment -%} Custom style overrides to shrink the desktop image gallery {%- endcomment -%}
+  <style>
+    @media (min-width: 769px) {
+      .product-page__grid {
+        grid-template-columns: 44% 56% !important;
+        gap: 40px !important;
+      }
+      .product-gallery {
+        max-width: 460px !important;
+        margin-left: auto !important;
+        margin-right: 0 !important;
+      }
+      .product-gallery__main {
+        max-height: 460px !important;
+        aspect-ratio: 1 !important;
+      }
+    }
+    
+    /* Custom Knee buy cards styling */
+    .knee-buy-card {
+      border: 2px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      background-color: #fff;
+      position: relative;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+    .knee-buy-card.is-selected {
+      border-color: #0A2540;
+      background-color: #f8fafc;
+      box-shadow: 0 4px 12px rgba(10, 37, 64, 0.05);
+    }
+    .knee-buy-card__badge {
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      background-color: #4F8CFF;
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 10px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .knee-card-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: #0A2540;
+    }
+    .knee-card-price {
+      font-weight: 800;
+      font-size: 16px;
+      color: #0A2540;
+    }
+    .knee-card-savings {
+      font-size: 11px;
+      color: #2e7d32;
+      font-weight: 700;
+      display: block;
+    }
+    .knee-buy-card__selectors {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+      padding-top: 12px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .knee-field-label {
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .knee-select-size, .knee-select-leg, .knee-select-size-pair {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 13px;
+      background-color: #fff;
+      color: #1e293b;
+      font-weight: 500;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .knee-select-size:focus, .knee-select-leg:focus, .knee-select-size-pair:focus {
+      border-color: #4F8CFF;
+    }
+    .size-guide-link {
+      background: none;
+      border: none;
+      color: #4F8CFF;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+    .size-guide-link:hover {
+      color: #0A2540;
+    }
+    
+    /* Promo Gift Box */
+    .product-promo-gift {
+      margin-top: 15px;
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      background-color: #fffdf5;
+      border: 1px dashed #e2d022;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-sizing: border-box;
+    }
+    .trust-badge-pill {
+      font-size: 10px;
+      font-weight: 700;
+      color: #64748b;
+      background-color: #fff;
+      border: 1px solid #e2e8f0;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+  </style>
 
-  {%- comment -%} Benefits {%- endcomment -%}
-  <div class="product-benefits">
-    <h3 class="product-benefits__title">Key Benefits</h3>
-    <ul class="product-benefits__list">
-      {%- assign desc_sentences = product.description | strip_html | split: '. ' -%}
-      {%- for sentence in desc_sentences limit: 5 -%}
-        {%- if sentence.size > 10 -%}
-          <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            {{ sentence | strip }}{% unless sentence contains '.' %}.{% endunless %}
-          </li>
-        {%- endif -%}
+  {%- comment -%} Inline script for handling cards logic and adding to cart {%- endcomment -%}
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.knee-buy-card');
+      
+      cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+          // Prevent selection change if clicking the dropdown selects directly
+          if (e.target.tagName === 'SELECT' || e.target.classList.contains('size-guide-link')) {
+            return;
+          }
+
+          cards.forEach(c => {
+            c.classList.remove('is-selected');
+            c.querySelector('.knee-buy-card__selectors').style.display = 'none';
+            c.querySelector('input[name="knee-pack-select"]').checked = false;
+          });
+
+          card.classList.add('is-selected');
+          card.querySelector('.knee-buy-card__selectors').style.display = 'flex';
+          card.querySelector('input[name="knee-pack-select"]').checked = true;
+        });
+      });
+
+      // Calculate dynamic delivery date
+      const dateRangeEl = document.getElementById('delivery-date-range');
+      if (dateRangeEl) {
+        const options = { month: 'short', day: 'numeric' };
+        const today = new Date();
+        const minDeliv = new Date(today);
+        minDeliv.setDate(today.getDate() + 4);
+        const maxDeliv = new Date(today);
+        maxDeliv.setDate(today.getDate() + 6);
+        dateRangeEl.textContent = `${minDeliv.toLocaleDateString('en-US', options)} - ${maxDeliv.toLocaleDateString('en-US', options)}`;
+      }
+
+      // Handle custom ATC
+      const form = document.getElementById('knee-custom-atc-form');
+      const atcBtn = document.getElementById('knee-atc-btn');
+      const productJsonEl = document.getElementById('product-json');
+
+      if (form && productJsonEl) {
+        const product = JSON.parse(productJsonEl.textContent);
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          
+          atcBtn.textContent = 'Adding to Cart...';
+          atcBtn.disabled = true;
+
+          const selectedCard = document.querySelector('.knee-buy-card.is-selected');
+          const packValue = selectedCard.dataset.pack;
+
+          try {
+            if (packValue === '1') {
+              // 1x Knee Support
+              const size = selectedCard.querySelector('.knee-select-size').value;
+              const leg = selectedCard.querySelector('.knee-select-leg').value;
+              
+              const variant = product.variants.find(v => v.option1 === size && v.option2 === leg);
+              if (!variant) throw new Error('Selected variant not found');
+
+              if (window.ShopFlexCart) {
+                await window.ShopFlexCart.addItem(variant.id, 1);
+              } else {
+                const res = await fetch('/cart/add.js', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ id: variant.id, quantity: 1 })
+                });
+                if (!res.ok) throw new Error('Failed adding single item');
+                window.location.href = '/cart';
+              }
+            } else {
+              // 2x Knee Support (Full Pair: Left + Right)
+              const size = selectedCard.querySelector('.knee-select-size-pair').value;
+              
+              const variantLeft = product.variants.find(v => v.option1 === size && v.option2 === 'Left Leg');
+              const variantRight = product.variants.find(v => v.option1 === size && v.option2 === 'Right Leg');
+              
+              if (!variantLeft || !variantRight) throw new Error('Selected pair variants not found');
+
+              const res = await fetch('/cart/add.js', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  items: [
+                    { id: variantLeft.id, quantity: 1 },
+                    { id: variantRight.id, quantity: 1 }
+                  ]
+                })
+              });
+
+              if (!res.ok) throw new Error('Failed adding pair items');
+              
+              if (window.ShopFlexCart) {
+                await window.ShopFlexCart.fetchCart();
+                window.ShopFlexCart.openDrawer();
+              } else {
+                window.location.href = '/cart';
+              }
+            }
+          } catch (error) {
+            console.error('Error adding to cart:', error);
+            alert('Error adding item to cart. Please refresh the page and try again.');
+          } finally {
+            atcBtn.textContent = 'Proceed To Checkout';
+            atcBtn.disabled = false;
+          }
+        });
+      }
+    });
+  </script>
+{%- else -%}
+  <div class="product-info" id="product-info">
+    {%- comment -%} Category / Overline {%- endcomment -%}
+    <span class="overline product-info__overline">{{ product.type | default: 'SHOPFLEXMOVE' }}</span>
+ 
+    {%- comment -%} Title {%- endcomment -%}
+    <h1 class="product-info__title">{{ product.title }}</h1>
+ 
+    {%- comment -%} Rating {%- endcomment -%}
+    <div class="product-info__rating">
+      {% render 'star-rating', rating: 4.8 %}
+      <span class="product-info__rating-count">(128 reviews)</span>
+    </div>
+ 
+    {%- comment -%} Price {%- endcomment -%}
+    <div class="product-info__price-row">
+      <span class="price" id="product-price">{{ product.selected_or_first_available_variant.price | money }}</span>
+      {%- if product.compare_at_price_max > product.price -%}
+        <span class="price price--compare" id="product-compare-price">{{ product.compare_at_price_max | money }}</span>
+        {%- assign savings = product.compare_at_price_max | minus: product.price -%}
+        <span class="price--savings">Save {{ savings | money }}</span>
+      {%- else -%}
+        <span class="price price--compare" id="product-compare-price" style="display:none;"></span>
+      {%- endif -%}
+    </div>
+ 
+    {%- comment -%} Description {%- endcomment -%}
+    <p class="product-info__description">{{ product.description | strip_html | truncatewords: 40 }}</p>
+ 
+    {%- assign has_sizing = false -%}
+    {%- if product.handle == 'flexmove-pro-posture-corrector' or product.handle == 'flexmove-complete-posture-bundle' -%}
+      {%- assign has_sizing = true -%}
+    {%- endif -%}
+ 
+    {%- comment -%} Variant Selector {%- endcomment -%}
+    {%- unless product.has_only_default_variant -%}
+      {%- for option in product.options_with_values -%}
+        <div class="variant-selector">
+          <div class="variant-selector__header">
+            <label class="variant-selector__label">{{ option.name }}:</label>
+            {%- if has_sizing and option.name == 'Size' -%}
+              <button type="button" class="size-guide-link" data-size-modal-trigger>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+                Size Guide
+              </button>
+            {%- endif -%}
+          </div>
+          <div class="variant-selector__options">
+            {%- for value in option.values -%}
+              <button
+                class="variant-selector__option{% if forloop.first %} is-selected{% endif %}"
+                data-variant-option
+                data-option-index="{{ forloop.parentloop.index0 }}"
+                data-value="{{ value }}"
+              >
+                {{ value }}
+              </button>
+            {%- endfor -%}
+          </div>
+        </div>
       {%- endfor -%}
-    </ul>
+    {%- endunless -%}
+ 
+    {%- comment -%} Quantity Breaks {%- endcomment -%}
+    {% render 'quantity-selector', product: product %}
+ 
+    {%- comment -%} Add to Cart {%- endcomment -%}
+    <div class="product-atc">
+      <form data-add-to-cart>
+        <input type="hidden" name="id" id="product-variant-id" value="{{ product.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="quantity" value="1" id="product-quantity-input">
+        <button type="submit" class="btn btn--primary btn--large btn--full product-atc__button" id="product-atc-btn" {% unless product.available %}disabled{% endunless %}>
+          {%- if product.available -%}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Add to Cart
+          {%- else -%}
+            Sold Out
+          {%- endif -%}
+        </button>
+      </form>
+      <div class="product-compliance-disclaimer">
+        <p>This product is a wellness/comfort product and is not a medical device. It is not intended to diagnose, treat, cure, or prevent any disease or medical condition. Consult your healthcare provider for specific medical concerns.</p>
+      </div>
+    </div>
+ 
+    {%- comment -%} Trust Badges {%- endcomment -%}
+    <div class="product-trust">
+      <div class="product-trust__item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <span>30-Day Money-Back Guarantee</span>
+      </div>
+      <div class="product-trust__item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        <span>Secure Checkout</span>
+      </div>
+      <div class="product-trust__item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <span>Free US Shipping Over $49</span>
+      </div>
+      <div class="product-trust__item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg>
+        <span>Responsive Customer Support</span>
+      </div>
+    </div>
+ 
+    {%- comment -%} Benefits {%- endcomment -%}
+    <div class="product-benefits">
+      <h3 class="product-benefits__title">Key Benefits</h3>
+      <ul class="product-benefits__list">
+        {%- assign desc_sentences = product.description | strip_html | split: '. ' -%}
+        {%- for sentence in desc_sentences limit: 5 -%}
+          {%- if sentence.size > 10 -%}
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              {{ sentence | strip }}{% unless sentence contains '.' %}.{% endunless %}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
   </div>
-</div>
+{%- endif -%}
 
 {%- comment -%} Product JSON for JavaScript {%- endcomment -%}
 <script type="application/json" id="product-json">
